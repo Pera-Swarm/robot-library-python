@@ -50,9 +50,7 @@ class Motion:
 class VirtualRobot(threading.Thread):
     """Base class for virtual robot emulation"""
 
-    """
-    Extend this class and implement 'setup()' and 'loop()'
-    """
+    # TODO Extend this class and implement 'setup()' and 'loop()'
 
     def __init__(self, robot_id, x=0, y=0, heading=0, mqtt_config=None):
         super().__init__()
