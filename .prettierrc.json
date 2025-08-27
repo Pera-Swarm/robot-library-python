@@ -1,0 +1,17 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "semi": true,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.py",
+      "options": {
+        "parser": "none"
+      }
+    }
+  ]
+}

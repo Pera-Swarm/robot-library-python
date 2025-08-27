@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "mrmlnc.vscode-duplicate",
+    "visualstudioexptteam.vscodeintellicode",
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "matangover.mypy",
+    "esbenp.prettier-vscode",
+    "ms-python.flake8",
+    "ms-python.debugpy",
+    "vscode-icons-team.vscode-icons",
+    "redhat.vscode-yaml",
+    "ms-python.mypy-type-checker",
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+    "twixes.pypi-assistant"
+  ],
+  "unwantedRecommendations": ["ms-python.black-formatter"]
+}
