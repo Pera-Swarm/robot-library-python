@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "robot-library-python"
+name = "py-swarm-robot"
 version = "0.1.0"
 description = "A modular robot control library"
-authors = [{name = "Example Author", email = "author@example.com"}]
+authors = [{name = "Nuwan Jaliyagoda", email = "nuwanjaliyagoda@gmail.com"},{name = "Nuwan Jaliyagoda", email = "kavindumethpura@gmail.com"},{name = "Kavindu Prabhath Methpura", email = "kavindumethpura@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = []
