@@ -80,7 +80,10 @@ class ColorSensor:
         """
         payload = {"id": self.robot_id}
         if reality is not None:
-            payload["reality"] = int(reality)
+            try:
+                payload["reality"] = int(reality)
+            except (ValueError, TypeError):
+                pass
         self._robot_mqtt.publish(self.REQ_TOPIC, json.dumps(payload))
 
     def get_color(
