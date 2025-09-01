@@ -34,7 +34,7 @@ class RobotMQTT:
     MGR_IN_TMPL = "/mgr/in/{robot_id}"
 
     def __init__(self, robot_id, mqtt_client, coordinate):
-        self.robot_id = int(robot_id)
+        self.robot_id = str(robot_id)
         self.client = mqtt_client
         self.coordinate = coordinate
 
