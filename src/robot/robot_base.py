@@ -6,7 +6,7 @@ import time
 import threading
 from robot.mqtt_client import RobotMqttClient
 from robot.helpers.coordinate import Coordinate
-from robot.helpers.robot_mqtt import RobotMQTT 
+from robot.helpers.robot_mqtt import RobotMQTT
 
 
 class Robot:
@@ -54,7 +54,7 @@ class Robot:
 
     def setup(self):
         """
-        Setup hook for initializing sensors, communication helpers, 
+        Setup hook for initializing sensors, communication helpers,
         and outputs.
         Override in subclass.
         """

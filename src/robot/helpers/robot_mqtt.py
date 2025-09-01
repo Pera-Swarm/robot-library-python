@@ -88,7 +88,7 @@ class RobotMQTT:
     def handle_incoming(self, topic, payload):
         """
         Entry point used by Robot.run() to deliver all inbound MQTT messages.
-        Routes to registered handlers, then management handler 
+        Routes to registered handlers, then management handler
         if the topic matches.
         """
         # First route to any exact-match helper

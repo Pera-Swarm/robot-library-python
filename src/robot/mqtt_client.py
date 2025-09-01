@@ -7,6 +7,7 @@ import threading
 import time
 import paho.mqtt.client as mqtt
 
+
 class RobotMqttClient:
     """
     A wrapper around paho-mqtt that handles:
@@ -18,7 +19,8 @@ class RobotMqttClient:
     """
 
     def __init__(self, client_id, server="127.0.0.1", port=1883,
-                 username=None, password=None, keepalive=60, autoreconnect=True):
+                 username=None, password=None, keepalive=60,
+                 autoreconnect=True):
         self.client_id = client_id
         self.server = server
         self.port = port
@@ -28,8 +30,8 @@ class RobotMqttClient:
         self.autoreconnect = autoreconnect
 
         # Queues
-        self.inbound_queue = queue.Queue() # all msgs received
-        self.outbound_queue = queue.Queue() # msgs to be sent
+        self.inbound_queue = queue.Queue()  # all msgs received
+        self.outbound_queue = queue.Queue()  # msgs to be sent
 
         # Event for stopping background loop
         self._stop_event = threading.Event()
@@ -59,7 +61,9 @@ class RobotMqttClient:
         self.client.loop_start()
 
         # Start outbound publisher thread
-        self._publisher_thread = threading.Thread(target=self._publish_loop, daemon=True)
+        self._publisher_thread = threading.Thread(
+            target=self._publish_loop, daemon=True
+        )
         self._publisher_thread.start()
 
     def disconnect(self):
@@ -97,7 +101,9 @@ class RobotMqttClient:
         """
         while not self._stop_event.is_set():
             try:
-                topic, payload, qos, retain = self.outbound_queue.get(timeout=0.5)
+                topic, payload, qos, retain = self.outbound_queue.get(
+                    timeout=0.5
+                )
                 self.client.publish(topic, payload, qos=qos, retain=retain)
             except queue.Empty:
                 continue
@@ -133,6 +139,8 @@ class RobotMqttClient:
 
     def _on_publish(self, client, userdata, mid):
         # This method is intentionally left empty as it serves as a placeholder
-        # for the Paho MQTT on_publish callback. It can be overridden or extended
-        # if specific behavior is needed(ACK , etc...) when a message is published.
+        # for the Paho MQTT on_publish callback. It can be overridden
+        # or extended
+        # if specific behavior is needed(ACK , etc...) when a message
+        # is published.
         pass
