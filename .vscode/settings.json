@@ -29,5 +29,5 @@
   "python.analysis.autoImportCompletions": true,
   "python.defaultInterpreterPath": ".venv/bin/python",
   "python.terminal.activateEnvInCurrentTerminal": true,
-  "cSpell.words": ["autoreconnect", "dtheta", "keepalive", "MQTT", "paho"]
+  "cSpell.words": ["autoreconnect", "demuxes", "dtheta", "keepalive", "MQTT", "paho", "TMPL"]
 }

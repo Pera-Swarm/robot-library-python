@@ -14,11 +14,11 @@ class RobotMQTT:
         - /mgr/out/start   : {"id": <int>}
         - /mgr/out/stop    : {"id": <int>}
         - /mgr/out/reset   : {"id": <int>}
-        - /loc/out/pose    : {"id": <int>, "x": <float>, "y": <float>, 
+        - /loc/out/pose    : {"id": <int>, "x": <float>, "y": <float>,
                               "heading": <float>}
 
       Inbound management (tools/server -> robot):
-        - /mgr/in/{robot_id} : "START" | "STOP" | "RESET" | 
+        - /mgr/in/{robot_id} : "START" | "STOP" | "RESET" |
           JSON {"cmd": "...", ...}
 
     Sensor/comm helpers can register per-topic handlers via add_handler().
@@ -95,7 +95,6 @@ class RobotMQTT:
         cb = self._handlers.get(topic)
         if cb:
             cb(topic, payload)
-            return
 
         # Management inbox
         inbox = self.MGR_IN_TMPL.format(robot_id=self.robot_id)
@@ -116,14 +115,12 @@ class RobotMQTT:
             cmd = cmd.upper()
 
         if cmd == "START":
-            # Upstream expects robot to move to RUN state; 
+            # Upstream expects robot to move to RUN state;
             # publish ack if needed
             # Actual state change is handled by the Robot subclass logic.
-            return
+            pass
         if cmd == "STOP":
             return
         if cmd == "RESET":
             # Often used to reinitialize pose; forward a fresh pose broadcast
             self.publish_coordinate()
-            return
-        # Unknown management commands can be ignored or logged.
