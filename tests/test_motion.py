@@ -23,9 +23,7 @@ def test_motion_controller_instantiation():
     """Instantiate MotionController."""
     coordinate = Coordinate()
     robot_mqtt = RobotMQTT(
-        robot_id=1,
-        mqtt_client=DummyMqttClient(),
-        coordinate=coordinate
+        robot_id=1, mqtt_client=DummyMqttClient(), coordinate=coordinate
     )
     controller = MotionController(coordinate=coordinate, robot_mqtt=robot_mqtt)
     assert isinstance(controller, MotionController)
@@ -34,6 +32,7 @@ def test_motion_controller_instantiation():
 def test_robot_base_run_and_shutdown():
     """Test Robot base class run and shutdown."""
     import threading
+    from unittest.mock import patch
 
     from robot.robot_base import Robot
 
@@ -51,8 +50,9 @@ def test_robot_base_run_and_shutdown():
             self._stop_event.set()
 
     robot = TestRobot(robot_id="testbot", loop_hz=100)
-    t = threading.Thread(target=robot.run)
-    t.start()
-    t.join(timeout=2)
+    with patch.object(robot.mqtt_client, "connect", return_value=None):
+        t = threading.Thread(target=robot.run)
+        t.start()
+        t.join(timeout=2)
     assert hasattr(robot, "setup_called")
     assert robot.loop_called >= 1
