@@ -8,6 +8,7 @@ from robot.mqtt_client import RobotMqttClient
 from robot.helpers.coordinate import Coordinate
 from robot.helpers.robot_mqtt import RobotMQTT 
 
+
 class Robot:
     """
     Base robot class providing lifecycle management.
@@ -43,7 +44,9 @@ class Robot:
             username=username,
             password=password
         )
-        self.robot_mqtt = RobotMQTT(robot_id, self.mqtt_client, self.coordinate)
+        self.robot_mqtt = RobotMQTT(
+            robot_id, self.mqtt_client, self.coordinate
+        )
 
     # ---------------------------------------------------------
     # Lifecycle
@@ -51,7 +54,8 @@ class Robot:
 
     def setup(self):
         """
-        Setup hook for initializing sensors, communication helpers, and outputs.
+        Setup hook for initializing sensors, communication helpers, 
+        and outputs.
         Override in subclass.
         """
         pass
