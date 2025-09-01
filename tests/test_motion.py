@@ -1,3 +1,7 @@
+# CHANGE: Patched the MQTT connection in test_robot_base_run_and_shutdown
+# to avoid real network calls. This ensures the test passes even if no
+# MQTT broker is running, by allowing setup() to be called.
+
 """Tests for the MotionController."""
 
 from robot.helpers.coordinate import Coordinate
