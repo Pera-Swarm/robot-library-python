@@ -118,9 +118,10 @@ class RobotMQTT:
             # Upstream expects robot to move to RUN state;
             # publish ack if needed
             # Actual state change is handled by the Robot subclass logic.
-            pass
+            return
         if cmd == "STOP":
             return
         if cmd == "RESET":
             # Often used to reinitialize pose; forward a fresh pose broadcast
             self.publish_coordinate()
+            return
