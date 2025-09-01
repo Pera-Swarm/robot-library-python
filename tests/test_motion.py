@@ -23,7 +23,7 @@ def test_motion_controller_instantiation():
     """Instantiate MotionController."""
     coordinate = Coordinate()
     robot_mqtt = RobotMQTT(
-        robot_id=1, 
+        robot_id=1,
         mqtt_client=DummyMqttClient(),
         coordinate=coordinate
     )
