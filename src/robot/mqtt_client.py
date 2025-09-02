@@ -141,6 +141,6 @@ class RobotMqttClient:
         # This method is intentionally left empty as it serves as a placeholder
         # for the Paho MQTT on_publish callback. It can be overridden
         # or extended
-        # if specific behavior is needed(ACK , etc...) when a message
+        # if specific behavior is needed (ACK , etc...) when a message
         # is published.
         pass
