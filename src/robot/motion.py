@@ -1,7 +1,3 @@
-"""Motion controller algorithms."""
+"""Motion controller algorithms (re-export)."""
 
-
-class MotionController:
-    """Placeholder motion controller."""
-
-    pass
+from .helpers.motion_controller import MotionController  # noqa: F401

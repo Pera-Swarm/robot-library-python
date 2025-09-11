@@ -1,11 +1,17 @@
-"""Top-level package for robot library."""
+"""Top-level package for robot library (Python port of robot-library-java)."""
 
 from .robot_base import Robot
-from .mqtt_client import RobotMqttClient
 from .motion import MotionController
+from .virtual_robot import VirtualRobot
+
+# Expose common subpackages
+from .configs.mqtt_settings import MQTTSettings
+from .configs.robot_settings import RobotSettings
 
 __all__ = [
     "Robot",
-    "RobotMqttClient",
     "MotionController",
+    "VirtualRobot",
+    "MQTTSettings",
+    "RobotSettings",
 ]
