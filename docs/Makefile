@@ -25,5 +25,5 @@ apidoc:
 html:
 	$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html"
 
-livehtml:
+livehtml:clean
 	sphinx-autobuild  --host 0.0.0.0 --port ${PORT} -c . "$(SOURCEDIR)" "$(BUILDDIR)/html"

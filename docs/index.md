@@ -14,5 +14,5 @@ Welcome to the documentation for the Python robot library. This site includes in
 README
 installation
 usage
-api/index
+api/modules
 ```
