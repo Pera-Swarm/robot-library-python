@@ -4,14 +4,6 @@ robot.communication package
 Submodules
 ----------
 
-robot.communication.communication module
-----------------------------------------
-
-.. automodule:: robot.communication.communication
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 robot.communication.directed\_comm module
 -----------------------------------------
 

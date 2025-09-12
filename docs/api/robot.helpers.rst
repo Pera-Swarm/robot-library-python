@@ -12,14 +12,6 @@ robot.helpers.coordinate module
    :show-inheritance:
    :undoc-members:
 
-robot.helpers.motion\_controller module
----------------------------------------
-
-.. automodule:: robot.helpers.motion_controller
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 robot.helpers.robot\_mqtt module
 --------------------------------
 

@@ -3,6 +3,8 @@
 SPHINXBUILD?=sphinx-build
 SOURCEDIR=.
 BUILDDIR=_build
+ROOTDIR=..
+PY?=python
 PORT?= 9000
 
 .PHONY: help clean html apidoc
@@ -14,7 +16,11 @@ clean:
 	rm -rf "$(BUILDDIR)"
 
 apidoc:
-	sphinx-apidoc -o docs/api src/robot
+	@if command -v sphinx-apidoc >/dev/null 2>&1; then \
+		sphinx-apidoc -o api $(ROOTDIR)/src/robot; \
+	else \
+		$(PY) -m sphinx.ext.apidoc -o api $(ROOTDIR)/src/robot; \
+	fi
 
 html:
 	$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html"

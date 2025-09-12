@@ -8,13 +8,9 @@ Subpackages
    :maxdepth: 4
 
    robot.communication
-   robot.exception
    robot.helpers
    robot.indicators
-   robot.interfaces
-   robot.mqtt
    robot.sensors
-   robot.types
 
 Submodules
 ----------
@@ -39,14 +35,6 @@ robot.robot\_base module
 ------------------------
 
 .. automodule:: robot.robot_base
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-robot.virtual\_robot module
----------------------------
-
-.. automodule:: robot.virtual_robot
    :members:
    :show-inheritance:
    :undoc-members:
