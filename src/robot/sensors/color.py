@@ -34,7 +34,7 @@ class ColorSensor(AbstractSensor):
             self.color.set_color_from_str(msg)
             self._col_lock = False
         else:
-            print(f"Received (unknown): {topic}> {self.color}")
+            print(f"Received (unknown): {topic}> {m}")
 
     def get_color(self) -> RGBColorType:
         msg = {"id": self.robot_id, "reality": "M"}
