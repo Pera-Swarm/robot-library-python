@@ -44,14 +44,16 @@ class RGBColorType:
         self.B = self._validate(int(hex_code[5:7], 16))
 
     def set_color(self, R: int, G: int, B: int) -> None:
-        self.R = self._validate(R)
-        self.G = self._validate(G)
-        self.B = self._validate(B)
+        if not (0 <= R <= 255):
+            raise RGBColorException(R, G, B)
+        if not (0 <= G <= 255):
+            raise RGBColorException(R, G, B)
+        if not (0 <= B <= 255):
+            raise RGBColorException(R, G, B)
 
-    def _validate(self, v: int) -> int:
-        if v < 0 or v > 255:
-            raise RGBColorException(v, v, v)
-        return v
+        self.R = R
+        self.G = G
+        self.B = B
 
     def get_r(self) -> int:
         return self.R

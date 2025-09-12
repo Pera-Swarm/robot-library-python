@@ -16,7 +16,7 @@ class MQTTSettings:
         print(f"server: {cls.server}")
         print(f"port: {cls.port}")
         print(f"username: {cls.user_name}")
-        print(f"password: {cls.password}")
+        print(f"password: {'(set)' if cls.password else '(unset)'}")
         print(f"channel: {cls.channel}")
 
 
