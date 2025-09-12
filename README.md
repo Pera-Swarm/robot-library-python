@@ -1,5 +1,9 @@
 # Robot Library (Python)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Pera-Swarm/robot-library-python/actions/workflows/ci.yml/badge.svg)](https://github.com/Pera-Swarm/robot-library-python/actions/workflows/ci.yml)
+[![Documentation: Publish](https://github.com/Pera-Swarm/robot-library-python/actions/workflows/docs-cd.yml/badge.svg)](https://github.com/Pera-Swarm/robot-library-python/actions/workflows/docs-cd.yml)
+
 A modular Python library for building robot applications. It provides components for motion control, sensors, communications, and indicators over MQTT.
 
 Documentation: the full site is auto-built and deployed to GitHub Pages on pushes to the `dev` branch. Once enabled in the repo settings, it will be available at: `https://pera-swarm.github.io/robot-library-python/`.
