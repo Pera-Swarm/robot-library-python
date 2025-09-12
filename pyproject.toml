@@ -12,7 +12,7 @@ authors = [
   { name = "Kavindu Prabhath Methpura", email = "kavindumethpura@gmail.com" },
 ]
 readme = "README.md"
-requires-python = "==3.13.`*"
+requires-python = ">=3.13"
 license = { file = "LICENSE" }
 dependencies = ["paho-mqtt"]
 
