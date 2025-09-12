@@ -14,7 +14,6 @@ class MqttMsg:
         self.channel = self.topic_groups[0] if len(self.topic_groups) > 1 else ""
         self.qos = qos
 
-    def __lt__(self, other: "MqttMsg"):
+    def __lt__(self, other: "MqttMsg") -> bool:
         # Define an arbitrary but stable ordering for potential priority queues
         return self.id < other.id
-

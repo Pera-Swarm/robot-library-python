@@ -14,4 +14,3 @@ class Communication(IMqttHandler):
 
     def send_message_with_distance(self, msg: str, distance: int) -> None:  # abstract
         raise NotImplementedError
-

@@ -12,4 +12,3 @@ class AbstractSensor(IMqttHandler):
 
     def handle_subscription(self, r, m):  # default no-op
         pass
-

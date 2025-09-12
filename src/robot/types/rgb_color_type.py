@@ -6,7 +6,12 @@ from robot.exception import RGBColorException
 
 
 class RGBColorType:
-    def __init__(self, R: int | str | Iterable[int], G: int | None = None, B: int | None = None):
+    def __init__(
+        self,
+        R: int | str | Iterable[int],
+        G: int | None = None,
+        B: int | None = None,
+    ):
         # Overloads similar to Java constructors
         if isinstance(R, str):
             # "R G B" format or hex code like "#00AAFF"
@@ -18,7 +23,9 @@ class RGBColorType:
         elif G is None and B is None and not isinstance(R, int):
             vals = list(R)
             if not (len(vals) == 3 or len(vals) == 4):
-                raise ValueError("length of the color[] should be equal to 3 (ambient ignored)")
+                raise ValueError(
+                    "length of the color[] should be equal to 3 (ambient ignored)"
+                )
             self.set_color(vals[0], vals[1], vals[2])
         else:
             assert G is not None and B is not None
@@ -65,5 +72,8 @@ class RGBColorType:
         return f"{self.R} {self.G} {self.B}"
 
     def compare_to(self, color: "RGBColorType") -> bool:
-        return (color.get_r() == self.R) and (color.get_g() == self.G) and (color.get_b() == self.B)
-
+        return (
+            (color.get_r() == self.R)
+            and (color.get_g() == self.G)
+            and (color.get_b() == self.B)
+        )

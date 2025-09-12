@@ -70,7 +70,12 @@ class RobotMqttClient:
         print("Connection lost!")
 
     # MQTT callbacks --------------------------------------------------------
-    def _on_message(self, client: mqtt.Client, userdata, msg: mqtt.MQTTMessage):  # noqa: ANN001, ANN201
+    def _on_message(
+        self,
+        client: mqtt.Client,
+        userdata,
+        msg: mqtt.MQTTMessage,
+    ):  # noqa: ANN001, ANN201
         try:
             topic = msg.topic
         except AttributeError:
@@ -80,7 +85,7 @@ class RobotMqttClient:
         except Exception:
             payload = str(msg.payload)
 
-        # Strip channel prefix from the topic before enqueueing, matching Java behavior
+        # Strip channel prefix before enqueueing, matching Java behavior
         if "/" in topic:
             t = topic[topic.find("/") + 1 :]
         else:

@@ -47,7 +47,14 @@ class Robot(IRobotState):
     reality: str
     state: RobotState = RobotState.WAIT
 
-    def __init__(self, id: int, x: float, y: float, heading: float, reality: str):
+    def __init__(
+        self,
+        id: int,
+        x: float,
+        y: float,
+        heading: float,
+        reality: str,
+    ):
         self.id = id
         self.reality = reality
 
@@ -163,11 +170,11 @@ class Robot(IRobotState):
             pass
 
     # Abstracts to implement in subclasses ------------------------------
-    def loop(self) -> None:  # type: ignore[override]
+    def loop(self) -> None:
         pass
 
-    def sensor_interrupt(self, sensor: str, value: str) -> None:  # type: ignore[override]
+    def sensor_interrupt(self, sensor: str, value: str) -> None:
         pass
 
-    def communication_interrupt(self, msg: str) -> None:  # type: ignore[override]
+    def communication_interrupt(self, msg: str) -> None:
         pass

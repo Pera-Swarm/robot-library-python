@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 from time import time
 
-from robot.mqtt.robot_mqtt_client import RobotMqttClient
-from robot.mqtt.mqtt_msg import MqttMsg
 from robot.exception import SensorException
+from robot.mqtt.mqtt_msg import MqttMsg
+from robot.mqtt.robot_mqtt_client import RobotMqttClient
 from robot.types import RGBColorType
+
 from .abstract_sensor import AbstractSensor
 
 
@@ -49,12 +50,18 @@ class ColorSensor(AbstractSensor):
             except Exception as e:  # noqa: BLE001
                 print(e)
             self.robot.delay(100)
-            timeout = (time() * 1000 - start_time > self.MQTT_TIMEOUT)
+            timeout = time() * 1000 - start_time > self.MQTT_TIMEOUT
 
         if timeout:
             raise SensorException("Color sensor timeout")
         return self.color
 
     def send_color(self, red: int, green: int, blue: int, ambient: int) -> None:
-        obj = {"id": self.robot_id, "R": red, "G": green, "B": blue, "ambient": ambient}
+        obj = {
+            "id": self.robot_id,
+            "R": red,
+            "G": green,
+            "B": blue,
+            "ambient": ambient,
+        }
         self.robot_mqtt_client.publish("sensor/color/", json.dumps(obj))

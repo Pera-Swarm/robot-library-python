@@ -7,7 +7,11 @@ from the Java implementation while remaining Pythonic.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol, runtime_checkable
+
+if TYPE_CHECKING:  # pragma: no cover - for type hints only
+    from robot.mqtt.mqtt_msg import MqttMsg
+    from robot.robot_base import Robot
 
 
 class RobotState(Enum):
@@ -43,4 +47,3 @@ __all__ = [
     "IRobotState",
     "IMqttHandler",
 ]
-

@@ -74,7 +74,10 @@ class Coordinate(IMqttHandler):
 
     # Utilities -----------------------------------------------------------
     def __str__(self) -> str:
-        return f"x:{self._round2(self._x)} y:{self._round2(self._y)} heading:{self._round2(self._heading)}"
+        return (
+            f"x:{self._round2(self._x)} y:{self._round2(self._y)} "
+            f"heading:{self._round2(self._heading)}"
+        )
 
     def print(self) -> None:  # noqa: A003 - mirror Java name
         print(str(self))

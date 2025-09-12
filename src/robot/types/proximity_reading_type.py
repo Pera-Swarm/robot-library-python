@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from robot.exception import ProximityException
+
 from .rgb_color_type import RGBColorType
 
 
@@ -10,10 +11,14 @@ class ProximityReadingType:
         values = s.split()
 
         self._distances: list[int] = [0] * reading_count
-        self._colors: list[RGBColorType] = [RGBColorType(0, 0, 0) for _ in range(reading_count)]
+        self._colors: list[RGBColorType] = [
+            RGBColorType(0, 0, 0) for _ in range(reading_count)
+        ]
 
         if len(values) != reading_count * 2:
-            raise ProximityException(f"ProximityReadingType: length mismatch {len(values)}")
+            raise ProximityException(
+                f"ProximityReadingType: length mismatch {len(values)}"
+            )
 
         for i in range(reading_count):
             vi = values[i]
@@ -39,4 +44,3 @@ class ProximityReadingType:
         parts.append(" ")
         parts.extend(str(c) for c in self._colors)
         return " ".join(parts)
-

@@ -18,8 +18,11 @@ class MyTestRobot(VirtualRobot):
             print("Test")
             self.delay(1000)
 
-    def communication_interrupt(self, msg: str) -> None:  # type: ignore[override]
-        print(f"communicationInterrupt on {self.id} with msg:{msg}")
+    def communication_interrupt(self, msg: str) -> None:
+        print(
+            f"communicationInterrupt on {self.id} "
+            f"with msg:{msg}"
+        )
 
 
 if __name__ == "__main__":

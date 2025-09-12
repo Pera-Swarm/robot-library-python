@@ -14,4 +14,3 @@ class RobotSettings:
 
 
 __all__ = ["RobotSettings"]
-

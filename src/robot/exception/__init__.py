@@ -26,7 +26,12 @@ class ProximityException(Exception):
 
 
 class RGBColorException(Exception):
-    def __init__(self, R: int | None = None, G: int | None = None, B: int | None = None):
+    def __init__(
+        self,
+        R: int | None = None,
+        G: int | None = None,
+        B: int | None = None,
+    ):
         msg = f"Invalid RGB values: R={R}, G={G}, B={B}"
         super().__init__(msg)
         print(msg)
@@ -39,4 +44,3 @@ __all__ = [
     "ProximityException",
     "RGBColorException",
 ]
-
