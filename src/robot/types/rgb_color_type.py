@@ -39,9 +39,17 @@ class RGBColorType:
 
     def set_color_from_hex_code(self, hex_code: str) -> None:
         # Expecting format like "#RRGGBB"
-        self.R = self._validate(int(hex_code[1:3], 16))
-        self.G = self._validate(int(hex_code[3:5], 16))
-        self.B = self._validate(int(hex_code[5:7], 16))
+        try:
+            r = int(hex_code[1:3], 16)
+            g = int(hex_code[3:5], 16)
+            b = int(hex_code[5:7], 16)
+            
+        except (ValueError, TypeError, IndexError):
+        # Handle bad hex codes (e.g., "#F00", "ABC", or too short)
+            raise RGBColorException(f"Invalid hex code format: {hex_code}")
+
+        # Use the main set_color method, which already validates 0-255
+        self.set_color(r, g, b)
 
     def set_color(self, R: int, G: int, B: int) -> None:
         if not (0 <= R <= 255):
