@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import math
+import json
+
 from robot.interfaces import IMqttHandler
 from robot.mqtt.mqtt_msg import MqttMsg
 from robot.mqtt.robot_mqtt_client import RobotMqttClient
@@ -32,7 +35,6 @@ class Coordinate(IMqttHandler):
     def handle_subscription(self, robot, message: MqttMsg) -> None:  # noqa: D401
         topic = message.topic
         if topic == self._topics_sub.get("ROBOT_LOCALIZATION"):
-            print(f"publishing the localization data of robot {robot.get_id()}")
             self.publish_coordinate()
 
     # Getters/Setters ----------------------------------------------------
@@ -52,7 +54,6 @@ class Coordinate(IMqttHandler):
         return self._heading
 
     def get_heading_rad(self) -> float:
-        import math
 
         return float(math.radians(self._heading))
 
@@ -60,7 +61,6 @@ class Coordinate(IMqttHandler):
         self._heading = float(self._normalize_heading(heading))
 
     def set_heading_rad(self, heading: float) -> None:
-        import math
 
         self.set_heading(math.degrees(heading))
 
@@ -93,8 +93,6 @@ class Coordinate(IMqttHandler):
         }
         data = [coord]
 
-        import json
-
         self.robot_mqtt_client.publish("localization/update", json.dumps(data))
 
     # Internal helpers ----------------------------------------------------
@@ -102,7 +100,6 @@ class Coordinate(IMqttHandler):
         return round(v * 100) / 100.0
 
     def _normalize_heading(self, heading: float) -> float:
-        import math
 
         # normalize to [-180, 180]
         return heading - math.ceil(heading / 360.0 - 0.5) * 360.0
