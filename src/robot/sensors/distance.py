@@ -60,4 +60,5 @@ class DistanceSensor(AbstractSensor):
 
     def send_distance(self, dist: float) -> None:
         obj = {"id": self.robot_id, "dist": dist}
-        self.robot_mqtt_client.publish("sensor/distance/", json.dumps(obj))
+        # Align with request topic used in get_distance()
+        self.robot_mqtt_client.publish("sensor/distance", json.dumps(obj))

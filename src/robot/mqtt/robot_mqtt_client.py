@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import deque
+import time
 from typing import Deque
 
 import paho.mqtt.client as mqtt
@@ -58,6 +59,7 @@ class RobotMqttClient:
             # broad but acceptable for connection bootstrapping
             print(f"MQTT connection error: {e}")
             self._connected = False
+            raise MqttClientException(f"MQTT connection error: {e}")
 
     def _on_connect(self, client: mqtt.Client, userdata, flags, rc):  # noqa: ANN001, ANN201
         if rc == 0:
@@ -68,6 +70,13 @@ class RobotMqttClient:
     def _on_disconnect(self, client: mqtt.Client, userdata, rc):  # noqa: ANN001, ANN201
         self._connected = False
         print("Connection lost!")
+        # Lightweight auto-reconnect attempt; avoid tight loop on persistent failure.
+        time.sleep(1)
+        try:
+            # loop_start is already running; just reconnect the socket
+            self._client.reconnect()
+        except Exception as e:
+            print(f"MQTT reconnect failed: {e}")
 
     # MQTT callbacks --------------------------------------------------------
     def _on_message(
@@ -76,14 +85,15 @@ class RobotMqttClient:
         userdata,
         msg: mqtt.MQTTMessage,
     ):  # noqa: ANN001, ANN201
+        topic = getattr(msg, "topic", "") or ""
+        raw_payload = getattr(msg, "payload", b"")
         try:
-            topic = msg.topic
-        except AttributeError:
-            topic = msg[0]
-        try:
-            payload = msg.payload.decode("utf-8")
+            payload = raw_payload.decode("utf-8") if isinstance(raw_payload, (bytes, bytearray)) else str(raw_payload)
         except Exception:
-            payload = str(msg.payload)
+            payload = str(raw_payload)
+
+        if not topic or not payload:
+            return
 
         # Strip channel prefix before enqueueing, matching Java behavior
         if "/" in topic:
@@ -91,8 +101,8 @@ class RobotMqttClient:
         else:
             t = topic
 
-        if payload:
-            self.in_queue.append(MqttMsg(t, payload))
+        self.in_queue.append(MqttMsg(t, payload))
+
 
     # API -------------------------------------------------------------------
     def publish(
@@ -121,3 +131,11 @@ class RobotMqttClient:
 
     def out_queue_pop(self) -> MqttMsg | None:
         return self.out_queue.popleft() if self.out_queue else None
+
+    def close(self) -> None:
+        """Stop the network loop and disconnect cleanly."""
+        try:
+            self._client.loop_stop()
+            self._client.disconnect()
+        finally:
+            self._connected = False

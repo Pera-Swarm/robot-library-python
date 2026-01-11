@@ -77,4 +77,5 @@ class ProximitySensor(AbstractSensor):
     def send_proximity(self) -> None:
         assert self._proximity is not None
         obj = {"id": self.robot_id, "proximity": str(self._proximity)}
-        self.robot_mqtt_client.publish("sensor/proximity/", json.dumps(obj))
+        # Align with request topic used in get_proximity()
+        self.robot_mqtt_client.publish("sensor/proximity", json.dumps(obj))

@@ -64,4 +64,5 @@ class ColorSensor(AbstractSensor):
             "B": blue,
             "ambient": ambient,
         }
-        self.robot_mqtt_client.publish("sensor/color/", json.dumps(obj))
+        # Align with request topic used in get_color()
+        self.robot_mqtt_client.publish("sensor/color", json.dumps(obj))
