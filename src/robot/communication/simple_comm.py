@@ -32,5 +32,8 @@ class SimpleCommunication(Communication):
         if topic == self._topics_sub.get("COMMUNICATION_IN_SIMP"):
             robot.communication_interrupt(msg)
         else:
-            print(self._topics_sub.get("COMMUNICATION_IN_SIMP"))
-            print(f"Received (unknown simp): {topic}> {msg}")
+            expected_topic = self._topics_sub.get("COMMUNICATION_IN_SIMP")
+            print(
+                f"Received (unknown simp): expected '{expected_topic}', "
+                f"but got '{topic}' with message '{msg}'"
+            )

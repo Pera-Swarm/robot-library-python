@@ -17,3 +17,12 @@ class MqttMsg:
     def __lt__(self, other: "MqttMsg") -> bool:
         # Define an arbitrary but stable ordering for potential priority queues
         return self.id < other.id
+
+    def __le__(self, other: "MqttMsg") -> bool:
+        return self.id <= other.id
+
+    def __gt__(self, other: "MqttMsg") -> bool:
+        return self.id > other.id
+
+    def __ge__(self, other: "MqttMsg") -> bool:
+        return self.id >= other.id

@@ -16,23 +16,18 @@ from .abstract_sensor import AbstractSensor
 class ProximitySensor(AbstractSensor):
     MQTT_TIMEOUT = 2000  # ms
 
-    def __init__(self, robot, mqtt_client: RobotMqttClient):
+    def __init__(
+        self,
+        robot,
+        mqtt_client: RobotMqttClient,
+        angles: list[int] | None = None,
+    ):
         super().__init__(robot, mqtt_client)
         self._topics_sub: dict[str, str] = {}
         self._subscribe("PROXIMITY_IN", f"sensor/proximity/{self.robot_id}")
         self._proximity_lock = False
         self._proximity: ProximityReadingType | None = None
-        self._angles: list[int] = [0]
-
-    def __init__with_angles(
-        self, robot, angles: list[int], mqtt_client: RobotMqttClient
-    ):  # helper to mirror overload
-        super().__init__(robot, mqtt_client)
-        self._topics_sub = {}
-        self._angles = list(angles)
-        self._subscribe("PROXIMITY_IN", f"sensor/proximity/{self.robot_id}")
-        self._proximity_lock = False
-        self._proximity = None
+        self._angles: list[int] = list(angles) if angles is not None else [0]
 
     def _subscribe(self, key: str, topic: str) -> None:
         self._topics_sub[key] = topic

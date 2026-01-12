@@ -3,4 +3,6 @@
 The implementation lives in `robot.mqtt.robot_mqtt_client`.
 """
 
-from .mqtt.robot_mqtt_client import RobotMqttClient  # noqa: F401
+from .mqtt.robot_mqtt_client import RobotMqttClient
+
+__all__ = ["RobotMqttClient"]

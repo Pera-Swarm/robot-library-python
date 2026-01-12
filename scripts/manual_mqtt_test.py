@@ -6,7 +6,9 @@ PORT = 1883            # must match MQTTSettings.port
 CHANNEL = "v1"         # must match MQTTSettings.channel
 ROBOT_ID = 10          # must match the id you gave the robot
 
-client = mqtt.Client()
+# client = mqtt.Client()     
+client = mqtt.Client(protocol=mqtt.MQTTv5)
+
 client.connect(BROKER, PORT)
 client.loop_start()
 

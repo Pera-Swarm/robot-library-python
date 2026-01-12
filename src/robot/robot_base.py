@@ -167,7 +167,8 @@ class Robot(IRobotState):
         try:
             time.sleep(max(0, milliseconds) / 1000.0)
         except Exception:
-            pass
+            # Ignore sleep interruptions (e.g., during teardown or patched sleeps in tests)
+            return
 
     # Abstracts to implement in subclasses ------------------------------
     def loop(self) -> None:

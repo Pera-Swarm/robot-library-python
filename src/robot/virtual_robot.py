@@ -13,11 +13,11 @@ class VirtualRobot(Robot):
 
     def sensor_interrupt(self, sensor: str, value: str) -> None:
         if sensor == "distance":
-            print(f"Distance sensor interrupt on {self.id}with value{value}")
+            print(f"Distance sensor interrupt on {self.id} with value {value}")
         elif sensor == "color":
-            print(f"Color sensor interrupt on {self.id}with value{value}")
+            print(f"Color sensor interrupt on {self.id} with value {value}")
         elif sensor == "proximity":
-            print(f"Proximity sensor interrupt on {self.id}with value{value}")
+            print(f"Proximity sensor interrupt on {self.id} with value {value}")
         else:
             print("Unknown sensor type")
 

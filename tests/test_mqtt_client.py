@@ -4,7 +4,7 @@ import types
 
 import pytest
 
-from robot.mqtt.robot_mqtt_client import RobotMqttClient
+import robot.mqtt.robot_mqtt_client as mqtt_client_mod
 
 
 class FakeClient:
@@ -63,7 +63,7 @@ def patch_mqtt_client(monkeypatch):
 
 
 def test_publish_prefix():
-    client = RobotMqttClient("srv", 1883, None, None, "chan")
+    client = mqtt_client_mod.RobotMqttClient("srv", 1883, None, None, "chan")
     fake = client._client  # type: ignore[attr-defined]
 
     client.publish("foo", "bar")
@@ -73,7 +73,7 @@ def test_publish_prefix():
 
 
 def test_subscribe_prefix():
-    client = RobotMqttClient("srv", 1883, None, None, "chan")
+    client = mqtt_client_mod.RobotMqttClient("srv", 1883, None, None, "chan")
     fake = client._client  # type: ignore[attr-defined]
 
     client.subscribe("abc")
@@ -82,7 +82,7 @@ def test_subscribe_prefix():
 
 
 def test_on_message_strips_channel_and_enqueues():
-    client = RobotMqttClient("srv", 1883, None, None, "chan")
+    client = mqtt_client_mod.RobotMqttClient("srv", 1883, None, None, "chan")
 
     msg = types.SimpleNamespace(topic="chan/robot/msg/10", payload=b"START")
     client._on_message(None, None, msg)  # noqa: SLF001
@@ -94,7 +94,7 @@ def test_on_message_strips_channel_and_enqueues():
 
 
 def test_disconnect_attempts_reconnect():
-    client = RobotMqttClient("srv", 1883, None, None, "chan")
+    client = mqtt_client_mod.RobotMqttClient("srv", 1883, None, None, "chan")
     fake = client._client  # type: ignore[attr-defined]
 
     client._on_disconnect(None, None, 0)  # noqa: SLF001
@@ -103,7 +103,7 @@ def test_disconnect_attempts_reconnect():
 
 
 def test_close_stops_loop_and_disconnects():
-    client = RobotMqttClient("srv", 1883, None, None, "chan")
+    client = mqtt_client_mod.RobotMqttClient("srv", 1883, None, None, "chan")
     fake = client._client  # type: ignore[attr-defined]
 
     client.close()
