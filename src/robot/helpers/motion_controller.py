@@ -90,13 +90,9 @@ class MotionController:
                 f"Sign: {sign} Distance: {distance} Duration: {duration}"
             )
             self._rotate(sign * speed, duration)
-<<<<<<< Updated upstream
-        except MotionControllerException as e:  # noqa: F841
-            print(f"rotate_degree validation failed: {e}")
-=======
+
         except MotionControllerException as e:
             print(f"[WARNING] rotate_degree validation failed: {e}")
->>>>>>> Stashed changes
             return
 
     # Core movement ------------------------------------------------------

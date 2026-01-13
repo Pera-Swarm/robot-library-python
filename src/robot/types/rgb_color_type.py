@@ -43,9 +43,8 @@ class RGBColorType:
             r = int(hex_code[1:3], 16)
             g = int(hex_code[3:5], 16)
             b = int(hex_code[5:7], 16)
-            
         except (ValueError, TypeError, IndexError):
-        # Handle bad hex codes (e.g., "#F00", "ABC", or too short)
+            # Handle bad hex codes (e.g., "#F00", "ABC", or too short)
             raise RGBColorException(f"Invalid hex code format: {hex_code}")
 
         # Use the main set_color method, which already validates 0-255
