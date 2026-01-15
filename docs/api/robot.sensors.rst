@@ -4,6 +4,14 @@ robot.sensors package
 Submodules
 ----------
 
+robot.sensors.abstract\_sensor module
+-------------------------------------
+
+.. automodule:: robot.sensors.abstract_sensor
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 robot.sensors.color module
 --------------------------
 

@@ -4,6 +4,14 @@ robot.indicators package
 Submodules
 ----------
 
+robot.indicators.abstract\_indicator module
+-------------------------------------------
+
+.. automodule:: robot.indicators.abstract_indicator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 robot.indicators.neopixel module
 --------------------------------
 

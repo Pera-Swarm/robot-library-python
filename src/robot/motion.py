@@ -1,7 +1,5 @@
-"""Motion controller algorithms."""
+"""Motion controller algorithms (re-export)."""
 
+from .helpers.motion_controller import MotionController
 
-class MotionController:
-    """Placeholder motion controller."""
-
-    pass
+__all__ = ["MotionController"]
