@@ -1,7 +1,6 @@
-"""MQTT client wrapper for robot communication."""
+"""Compatibility re-export for RobotMqttClient.
 
+The implementation lives in `robot.mqtt.robot_mqtt_client`.
+"""
 
-class RobotMqttClient:
-    """Placeholder MQTT client wrapper."""
-
-    pass
+from .mqtt.robot_mqtt_client import RobotMqttClient  # noqa: F401

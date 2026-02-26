@@ -8,7 +8,6 @@ version = "0.1.0"
 description = "A modular robot control library"
 authors = [
   { name = "Nuwan Jaliyagoda", email = "nuwanjaliyagoda@gmail.com" },
-  { name = "Nuwan Jaliyagoda", email = "kavindumethpura@gmail.com" },
   { name = "Kavindu Prabhath Methpura", email = "kavindumethpura@gmail.com" },
 ]
 readme = "README.md"
