@@ -49,7 +49,7 @@ class MotionController:
                     pass
 
             coordinate = _StubCoord()  # type: ignore[assignment]
-        self.c = coordinate  # type: ignore[assignment]
+        self.c: Coordinate = coordinate  # type: ignore[assignment]
 
     # Wrappers -----------------------------------------------------------
     def move(
@@ -86,9 +86,7 @@ class MotionController:
                 2 * math.pi * RobotSettings.ROBOT_RADIUS * (abs(degree) / 360)
             ) * self.CM_2_MM
             duration = float(distance / abs(speed)) * self.SEC_2_MS
-            self._debug(
-                f"Sign: {sign} Distance: {distance} Duration: {duration}"
-            )
+            self._debug(f"Sign: {sign} Distance: {distance} Duration: {duration}")
             self._rotate(sign * speed, duration)
         except MotionControllerException:  # noqa: F841
             pass
@@ -104,13 +102,11 @@ class MotionController:
         duration: float,
     ) -> None:
         if not (
-            self._is_speed_in_range(left_speed)
-            and self._is_speed_in_range(right_speed)
+            self._is_speed_in_range(left_speed) and self._is_speed_in_range(right_speed)
         ):
             try:
                 raise MotionControllerException(
-                    "One of the provided speeds is out of "
-                    "range in move() function"
+                    "One of the provided speeds is out of range in move() function"
                 )
             except MotionControllerException:
                 return
@@ -128,10 +124,7 @@ class MotionController:
 
             x = self.c.get_x() + d * math.cos(h)
             y = self.c.get_y() + d * math.sin(h)
-            heading = (
-                self.c.get_heading_rad()
-                + (dR - dL) / (RobotSettings.ROBOT_WIDTH)
-            )
+            heading = self.c.get_heading_rad() + (dR - dL) / (RobotSettings.ROBOT_WIDTH)
 
             self.c.set_coordinate_heading(x, y, math.degrees(heading))
 
@@ -154,8 +147,7 @@ class MotionController:
     def _is_speed_in_range(self, speed: int) -> bool:
         if speed > 0:
             return (
-                RobotSettings.ROBOT_SPEED_MIN <= speed
-                <= RobotSettings.ROBOT_SPEED_MAX
+                RobotSettings.ROBOT_SPEED_MIN <= speed <= RobotSettings.ROBOT_SPEED_MAX
             )
         elif speed < 0:
             return (

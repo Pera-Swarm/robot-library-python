@@ -107,7 +107,7 @@ self.neo_pixel.change_color(255, 128, 0)
 Sphinx documentation lives in `docs/` and is auto-generated on pushes to `dev` via GitHub Actions, then deployed to GitHub Pages. To build locally:
 
 ```bash
-pip install -r docs/requirements.txt
+pip install -r requirements.txt
 sphinx-apidoc -o docs/api src/robot
 python -m sphinx -b html docs docs/_build/html
 open docs/_build/html/index.html

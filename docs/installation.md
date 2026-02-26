@@ -25,7 +25,7 @@ pip install -e .
 From the repository root:
 
 ```bash
-pip install -r docs/requirements.txt
+pip install -r requirements.txt
 sphinx-apidoc -o docs/api src/robot
 python -m sphinx -b html docs docs/_build/html
 ```
@@ -33,7 +33,7 @@ python -m sphinx -b html docs docs/_build/html
 Or from inside the `docs/` directory:
 
 ```bash
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 make apidoc
 make html
 ```
